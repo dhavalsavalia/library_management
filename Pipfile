@@ -6,6 +6,8 @@ verify_ssl = true
 [dev-packages]
 pep8 = "*"
 flake8 = "*"
+django-extentions = "*"
+django-extensions = "*"
 
 [packages]
 django = "*"

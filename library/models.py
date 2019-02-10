@@ -110,12 +110,15 @@ class Issue(models.Model):
         return reverse('library_issue_update', args=(self.pk,))
 
 
-class IssueManager(models.Manager):
-    def by_user(self):
-        return self.filter(category="RB")
+class LogManager(models.Manager):
+    def by_user(self, enrolment_number):
+        return self.filter(user__enrolment_number=enrolment_number)
 
     def by_issuer(self):
         return self.filter(category="TB")
+
+    def pending_books(self):
+        return self.filter(status="pending")
 
     def due_books(self):
         return self.filter(status="over_due")
@@ -156,6 +159,11 @@ class Log(models.Model):
         choices=STATUS_CHOICES,
         default="pending"
         )
+    fine = models.IntegerField(
+        default=0
+    )
+    
+    objects = LogManager()
 
     class Meta:
         verbose_name = _("Log")

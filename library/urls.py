@@ -38,3 +38,10 @@ urlpatterns += (
     path('library/log/detail/<int:pk>/', views.LogDetailView.as_view(), name='library_log_detail'),
     path('library/log/update/<int:pk>/', views.LogUpdateView.as_view(), name='library_log_update'),
 )
+
+urlpatterns += (
+    path('', views.index, name='index'),
+    path('library/log_book/', views.log_book, name='log_book'),
+    path('library/return_book/', views.return_book, name='return_book'),
+    path('library/return_book_handler/', views.return_book_handler, name='return_book_handler'),
+)
